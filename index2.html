@@ -9,7 +9,6 @@
     <link href="assets/css/swiper-3.3.1.min.css"
           rel="stylesheet">
     <link href="assets/css/ab.css" rel="stylesheet">
-    <!--<link rel="stylesheet" href="assets/css/main.css?a=322" />-->
     <style type="text/css">
         .wechat_tip, .wechat_tip>i {
             position: absolute;
@@ -226,11 +225,6 @@
                     </div>
                 </section>
             </div>
-            <!--<div class="modal-footer" style="margin-top: 0px">-->
-                <!--<a data-dismiss="modal" href="javascript:void(0)"-->
-                   <!--class="btn btn-u btn-u btn-u-default" id="cancle"-->
-                   <!--style="border-radius: 0; width: auto; height: auto;">关闭</a>-->
-            <!--</div>-->
         </div>
     </div>
 </div>
@@ -247,9 +241,13 @@
 
     var isIos = new Boolean(navigator.userAgent.match(/(iPhone|iPod|iPad);?/i));
 
-    // isWeixin = true;
+    if(isIos == true){
+        $('.weixin-desc').text('請點擊右上角，使用"safari"打開');
+    }else{
+        $('.weixin-desc').text('請點擊右上角，使用"瀏覽器"打開');
+    }
 
-    if(isWeixin == true){
+    if(isIos != true && isWeixin == true){
         $('.weixin').removeClass('hide');
         $('.weixin').addClass('show');
     }
