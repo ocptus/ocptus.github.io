@@ -1,71 +1,271 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>山丘</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css?a=322" />
-		<style type="text/css">
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <title>山丘</title>
+    <link href="assets/css/download.css"
+          rel="stylesheet">
+    <link href="assets/css/swiper-3.3.1.min.css"
+          rel="stylesheet">
+    <link href="assets/css/ab.css" rel="stylesheet">
+    <style type="text/css">
+        .wechat_tip, .wechat_tip>i {
+            position: absolute;
+            right: 10px
+        }
+        .wechat_tip {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            background: #3ab2a7;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            width: 135px;
+            height: 60px;
+            border-radius: 10px;
+            top: 15px
+        }
+        .wechat_tip>i {
+            top: -10px;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 12px solid #3ab2a7
+        }
+        .mask img {
+            max-width: 100%;
+            height: auto
+        }
+        .weixin{background: rgba(0,0,0,0.8); text-align: center; position: fixed; left:0; top: 0; width: 100%; height: 100%; z-index: 998;}
+        .weixin-desc{padding-top: 180px; color: #fff; font-size: 16px; line-height: 1.5;}
+        .show{display: block;}
+        .hide{display: none;}
+    </style>
+    <script src="assets/js/zepto.min.js"
+            type="text/javascript"></script>
+    <script src="assets/js/swiper.jquery.min.js"
+            type="text/javascript"></script>
 
-		</style>
+    <script>
+        function mobile_provision(){
+            document.getElementById('actions').innerHTML = '                        <div onclick="opentip()" style="color: #32b2a7">"未受信任的企业级开发者"的解决办法</div onclick="opentip()"><p>正在安装，请按 Home 键在桌面查看</p><p style="padding:0px;color: orangered;font-size: 13px;">下載安裝完成后，請立即信任山丘</p><button onclick="location.href=\'assets/app.mobileprovision\'">立即信任</button>' +
+                '' +
+                '' +
+                '<p><img style="width: 100%;margin-top: 10px" src="images/rkFow3.jpg" alt=""></p>';
+        }
 
-	</head>
-	<body class="is-preload">
-			<div id="wrapper">
-					<div id="main">
-						<div class="inner">
-								<header id="header" style="padding-top: 1em">
-									<p>
-										<a href="http://www.shanqiu.in" class="logo">點擊訪問 <strong>山丘官網</strong></a>
-									</p>
-								</header>
-								<section>
+        function install_app(_link,that){
+
+            document.getElementById('actions').innerHTML = '<button style="min-width:43px;width:43px;padding:12px 0;border-top-color:transparent;border-left-color:transparent" class="loading">&nbsp;</button>';
+            setTimeout("mobile_provision()", 7000);
+
+            location.href = _link;
+        }
+
+        function install_ing(_link){
+            location.href = _link;
+            $(".text-bar")[0].innerHTML = "安装中";
+            $(".change").show();
+            $(".text-bar").attr("disabled", "true");
+            $(".top-bar").css("width", "0.1%");
+            timer = setTimeout(function() {
+                $(".top-bar").css("width", "0.1%").animate({
+                    width:"20%"
+                }, 1e3, function() {
+                    $("#mq1").hide();
+                    $(".device").show();
+                    var mySwiper = new Swiper(".swiper-container1", {
+                        nextButton:".next_btn",
+                        autoplay:3e3,
+                        autoplayStopOnLast:true
+                    });
+                    $(".top-bar").css("width", "20%").animate({
+                        width:"100%"
+                    }, 15e3, function() {
+                        $(".text-bar")[0].innerHTML = "立即信任";
+                        $(".text-bar").removeAttr("disabled");
+                        $(".text-bar").attr("href", "/assets/app.mobileprovision");
+                    });
+                });
+            }, 1e3);
+        }
+        $(document).ready(function(){
+            setTimeout(function(){
+                $("div[style='display:inline-block;vertical-align:middle;width:100%;']").css("height","75px");
+
+            },300)
+        });
+    </script>
 
 
-									<h2>1.下載</h2>
+</head>
+<body>
+<span class="pattern left"><img
+        src="images/left.png"></span>
+<span class="pattern right"><img
+        src="images/right.png"></span>
+<div class="out-container">
+    <div class="main">
+        <header>
+            <div class="table-container">
+                <div class="cell-container">
+                    <div class="app-brief">
+                        <div class="icon-container wrapper">
+                            <i class="icon-icon_path bg-path"></i>
 
-									<p>
-										<a href="itms-services://?action=download-manifest&url=https://www.shanqiu.in/a/apple/manifest.plist" class="button primary fit install-button">立即下載</a>
-									</p>
+                            <span class="icon"><img src="images/logo.jpg"></span>
+                        </div>
+                        <h1 class="name wrapper">
+                            山丘-全球網絡
+                        </h1>
+                        <p ></p>
+                        <div class="release-info">
+                            <p>因政策原因，需在頁面內下載</p>
+                        </div>
 
-									<hr class="major" />
+                        <div id="actions" class="actions">
+                            <button
+                                onclick="install_app('itms-services://?action=download-manifest&url=https://www.shanqiu.in/a/apple/manifest.plist',this)">下载安装</button>
+                        </div>
 
-									<h2>2.選擇文件描述 > 點擊信任</h2>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+</div>
 
-									<p>
-										下載成功后，點擊下面按鈕,按圖片設置信任山丘
-									</p>
-									<p>
-										<a href="https://www.shanqiu.in/a/apple/victor_sq_dis.mobileprovision" class="button fit disabled" id="xinren">設置信任</a>
-									</p>
+<div class="mask" style="display: none"></div>
+<style type="text/css">
+    #inhouseTip {
+        left: 0;
+        top: 0;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        background: #fff;
+        text-align: center;
+    }
 
-									<span class="image main">
-										<img src="images/rkFow3.jpg" alt="">
-									</span>
+    .close {
+        float: right;
+        border: 0;
+        font-size: 25px;
+        margin-right: 15px;
+    }
 
-									<br>
-									<br>
-									<br>
-								</section>
+    .app_bottom_fixed {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 3;
+        font-size: 0;
+        text-align: center;
+        background: 0 0;
+    }
+</style>
+<script type="text/javascript">
+    function opentip(){
+        $("#inhouseTip").css({display: 'block'});
+    }
+    function closetip(){
+        $("#inhouseTip").css({display: 'none'});
+    }
+</script>
+<div class="modal fade addmodel in" id="inhouseTip" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel" aria-hidden="false"
+     style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" onclick="closetip()" class="close"
+                        data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title font-16">"未受信任的企业级开发者"的解决办法</h4>
+            </div>
+            <div class="modal-body"
+                 style="background: #f2f2f2; height: 600px; overflow-y: scroll;">
+                <section>
+                    <div style="padding: 0 20px 20px; color: #333;">
+                        <p>因苹果公司的政策原因，在iOS系统中首次安装企业版应用时会出现"未受信任的企业级开发者"提示</p>
+                    </div>
+                    <div style="padding: 0 10px 20px;">
+                        <img class="img-responsive center-block mt-20 mb-20"
+                             src="images/0.jpg"
+                             style="width: 80%;"> <br>
+                        <h4 class="font-16">解决办法如下（以iOS11系统为例）：</h4>
+                        <li style="list-style: none; color: #333;">1、在手机中打开设置功能，选择"通用"</li>
+                        <img class="img-responsive center-block mt-20 mb-20"
+                             src="images/1.jpg"
+                             style="width: 80%;">
+                        <li style="list-style: none; color: #333;">2、在通用中，选择"描述文件与设备管理"功能</li>
+                        <img class="img-responsive center-block mt-20 mb-20"
+                             src="images/2.jpg"
+                             style="width: 80%;">
+                        <li style="list-style: none; color: #333;">3、在描述文件与设备管理中的企业级应用分类中，选择要安装的企业应用的文件名称（与打开时的提示一致），点击进入</li>
+                        <img class="img-responsive center-block mt-20 mb-20"
+                             src="images/3.jpg"
+                             style="width: 80%;">
+                        <li style="list-style: none; color: #333;">4、进入企业签名页面后，确认企业签名中的公司名称与应用名称后，点击信任"企业签名公司名称"</li>
+                        <img class="img-responsive center-block mt-20 mb-20"
+                             src="images/4.jpg"
+                             style="width: 80%;">
+                        <li style="list-style: none; color: #333;">5、回到桌面，重新打开应用即可使用</li>
+                        <br>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
 
-						</div>
-					</div>
+<div class="weixin hide">
+    <p class="weixin-desc">請使用右上角，用"瀏覽器"打開</p>
+</div>
+<script>
+    var isWeixin = function () {
+        var ua = navigator.userAgent.toLowerCase();
+        return ua.match(/MicroMessenger/i) == "micromessenger";
+    }();
 
-			</div>
 
-		<div class="weixin hide">
-			<p class="weixin-desc">請使用右上角，用"瀏覽器"打開</p>
-		</div>
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    var isIos = new Boolean(navigator.userAgent.match(/(iPhone|iPod|iPad);?/i));
 
-		<script>
-            eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('3 1=0;3 5=9(){3 f=d.e.o();n f.c(/q/i)=="r"}();3 2=s p(d.e.c(/(t|A|B);?/i));4(2!=0&&5==0){1=7;$(\'.6\').a(\'b\');$(\'.6\').8(\'l\')}4(2!=0&&5!=0){1=7;D=\'C://z.v.u\'}4(2==0&&5==0){1=7;$(\'.k-m\').g(\'j\',9(){$(\'.6\').a(\'b\');$(\'.6\').8(\'l\')})}$(\'.k-m\').g(\'j\',9(){4(1==0){$(\'#h\').a(\'y\');$(\'#h\').8(\'x w\')}})',40,40,'true|download|isIos|var|if|isWeixin|weixin|false|addClass|function|removeClass|hide|match|navigator|userAgent|ua|on|xinren||click|install|show|button|return|toLowerCase|Boolean|MicroMessenger|micromessenger|new|iPhone|in|shanqiu|primary|fit|disabled|www|iPod|iPad|http|location'.split('|'),0,{}))
-		</script>
+    if(isIos == true){
+        $('.weixin-desc').text('請點擊右上角，使用"safari"打開');
+    }else{
+        $('.weixin-desc').text('請點擊右上角，使用"瀏覽器"打開');
+    }
 
-	</body>
+    if(isWeixin == true){
+        $('.weixin').removeClass('hide');
+        $('.weixin').addClass('show');
+    }
+
+    if(isIos != true && isWeixin != true){
+        location = 'http://www.shanqiu.in';
+    }
+
+</script>
+
+</body>
 </html>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129793327-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-129793327-1');
+</script>
+
+
